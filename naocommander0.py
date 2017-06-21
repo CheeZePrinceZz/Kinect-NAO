@@ -52,7 +52,7 @@ class NAOCommander():
                          right_elbow_roll=2.5, right_wrist_yaw=0., right_hand=0.00,
                          left_shoulder_pitch=80.5, left_shoulder_roll=6.5, left_elbow_yaw=-80,
                          left_elbow_roll=-2.5, left_wrist_yaw=0., left_hand=0.00,
-                         head_pitch = 0.0, head_yaw = 0.0,
+                         head_pitch = 0.0,
                          pfractionmaxspeed=0.6):
         if not self.device.moveIsActive():
             self.device.wbEnable(True)
@@ -60,7 +60,7 @@ class NAOCommander():
             self.device.wbEnableBalanceConstraint(True, "Legs")
             jointnames = ["RShoulderPitch", "RShoulderRoll", "RElbowYaw", "RElbowRoll", "RWristYaw", "RHand",
                           "LShoulderPitch", "LShoulderRoll", "LElbowYaw", "LElbowRoll", "LWristYaw", "LHand",
-                          "HeadPitch","HeadYaw"]
+                          "HeadPitch"]
             movement = [right_shoulder_pitch, right_shoulder_roll, right_elbow_yaw, right_elbow_roll, right_wrist_yaw]
             movement = [x * motion.TO_RAD for x in movement]
             # The hand is not in degree, we need to add it after the conversion
@@ -70,7 +70,6 @@ class NAOCommander():
             l_arm.append(left_hand)
             movement.extend(l_arm)
             movement.append(head_pitch * motion.TO_RAD)
-            movement.append(head_yaw * motion.TO_RAD)
             #self.device.angleInterpolationWithSpeed(jointnames, movement, pfractionmaxspeed)
             self.device.setAngles(jointnames, movement, pfractionmaxspeed)
 

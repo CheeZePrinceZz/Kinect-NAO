@@ -1,5 +1,3 @@
-__author__ = 'Angeall'
-
 #
 #     Joints constants used to convert one skeleton into another skeleton
 #     A Skeleton should contain a HashMap<String, Integer> to link the joints that the skeleton implements

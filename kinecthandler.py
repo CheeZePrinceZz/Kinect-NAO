@@ -1,6 +1,4 @@
 from time import sleep
-
-__author__ = 'Angeall'
 import PyKinectV2
 import PyKinectRuntime
 import joints
@@ -164,4 +162,3 @@ class KinectHandler():
                     z = shoulder_z
             positions[joints_map[joint]] = [x, y, z]
         return positions
-

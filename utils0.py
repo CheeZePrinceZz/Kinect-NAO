@@ -30,7 +30,6 @@ last_movements = {"r_s_pitch": 0,
                   "l_e_yaw": 0,
                   "l_w_yaw": 0,
                   "h_pitch": 0,
-                  "h_yaw": 0,
                   }
 
 FILTER_SPAN = 4
@@ -48,7 +47,6 @@ smoothing_dict = {"r_s_pitch": deque(),
                   "l_e_yaw": deque(),
                   "l_w_yaw": deque(),
                   "h_pitch": deque(),
-                  "h_yaw": deque(),
                   }
 
 right_hand = None
