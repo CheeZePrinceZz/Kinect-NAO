@@ -2,6 +2,7 @@ import kinecthandler as kinecthandler
 import naocommander as naocommander
 import converter as converter
 import SkeletonDisplay as SkeletonDisplay
+import threading
 
 #robotIP = "192.168.2.24"
 # robotIP = "127.0.0.1"
@@ -35,7 +36,19 @@ def kinect_test(kinect_h, nao_c):
 
 
 if __name__ == '__main__':
-    SkeletonDisplay.BodyGameRuntime()
-    _sensor = kinecthandler.KinectHandler()
-    _avatar = naocommander.NAOCommander(robotIP, PORT)
+    # SkeletonDisplay.BodyGameRuntime()
+    # _sensor = kinecthandler.KinectHandler()
+    # _avatar = naocommander.NAOCommander(robotIP, PORT)
+    # kinect_test(_sensor, _avatar)
+    process1 = threading.Thread(target = SkeletonDisplay.BodyGameRuntime())
+    process1.daemon = True
+    process2 = threading.Thread(target = kinecthandler.KinectHandler())
+    process2.daemon = True
+    process3 = threading.Thread(target = naocommander.NAOCommander(robotIP, PORT))
+    process3.daemon
+    process1.start()
+    process2.start()
+    process3.start()
+    _sensor = process2
+    _avatar = process3
     kinect_test(_sensor, _avatar)
