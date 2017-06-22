@@ -9,6 +9,16 @@ class NAOCommander():
         # Wake up robot
         motionproxy.wakeUp()
         postureproxy.goToPosture("Stand", 0.5)
+        #############################################################
+        pNames          = "LLeg"
+        pStiffnessLists = 1.0
+        pTimeLists      = 1.0
+        motionproxy.stiffnessInterpolation(pNames, pStiffnessLists, pTimeLists)
+        pNames          = "RLeg"
+        pStiffnessLists = 1.0
+        pTimeLists      = 1.0
+        motionproxy.stiffnessInterpolation(pNames, pStiffnessLists, pTimeLists)
+        #############################################################
         motionproxy.setCollisionProtectionEnabled("Arms", True)
 
         self.device = motionproxy

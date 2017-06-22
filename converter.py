@@ -1,3 +1,10 @@
+###### TODO LIST ######
+# - Find Head Pitch and Yaw
+# ###########
+
+
+
+
 import cmath
 import kinecthandler
 import joints
@@ -324,6 +331,30 @@ def get_head_pitch(kinect_pos, world=None, must_filter=True):
         res = utils.value_filter("h_pitch", res)
     return res
 
+######################################################
+#def get_head_pitch(kinect_pos, kinect_rot, world=None, must_filter=True):
+#    if world is None:
+#        world = get_robot_world(kinect_pos)
+#    head = kinect_pos[kinecthandler.joints_map[joints.HEAD]]
+#    neck = kinect_pos[kinecthandler.joints_map[joints.NECK]]
+#    modified_neck = [neck[0], neck[1] - 1, neck[2]]
+#    neck_head = utils.get_vector(head, neck, transform=world[0])
+#    modified_neck_head = utils.get_vector(head, modified_neck, transform=world[0])
+#    res = np.arccos(utils.normalized_dot(neck_head, modified_neck_head))
+#    sign = 1
+#    if head[2] > neck[2]:
+#        sign = -1
+#    res *= sign
+#    res = max(res, -0.66)
+#    res = min(res, 0.5)
+#    if must_filter:
+#        res = utils.value_filter("h_pitch", res)
+#    return res
+############################################################
+
+
+
+
 
 def get_head_yaw(kinect_pos, world=None, must_filter=True):
     if world is None:
@@ -338,8 +369,8 @@ def get_head_yaw(kinect_pos, world=None, must_filter=True):
     if head[2] > neck[2]:
         sign = -1
     res *= sign
-    res = max(res, -110.0)
-    res = min(res, 110.0)
+    res = max(res, -0.66)
+    res = min(res, 0.5)
     if must_filter:
         res = utils.value_filter("h_yaw", res)
     return res
@@ -356,6 +387,33 @@ def get_head(kinect_pos):
     world = get_robot_world(kinect_pos)
     pitch = get_head_pitch(kinect_pos, world)*180./np.pi
     return pitch
+
+
+def get_head_YAW(kinect_pos, kinect_rot, world=None, must_filter=True):
+    if world is None:
+        world = get_robot_world(kinect_pos)
+    head = kinect_pos[kinecthandler.joints_map[joints.HEAD]]
+    print "Head Pos: ", head
+    neck = kinect_pos[kinecthandler.joints_map[joints.NECK]]
+    modified_neck = [neck[0], neck[1] - 1, neck[2]]
+    neck_head = utils.get_vector(head, neck, transform=world[0])
+    modified_neck_head = utils.get_vector(head, modified_neck, transform=world[0])
+    res = np.arccos(utils.normalized_dot(neck_head, modified_neck_head))
+    sign = 1
+    if head[2] > neck[2]:
+        sign = -1
+    res *= sign
+    res = max(res, -0.66)
+    res = min(res, 0.5)
+    if must_filter:
+        res = utils.value_filter("h_yaw", res)
+    head_yaw = -kinect_rot[kinecthandler.joints_map[joints.HEAD]][2]
+    print "Head rot: ", head_yaw
+    head_yaw = min(res, 100)
+    head_yaw = max(res, -100)
+    print "Head yaw: ", head_yaw
+    return head_yaw
+    
 
 def get_head2(kinect_pos):
     world = get_robot_world(kinect_pos)
