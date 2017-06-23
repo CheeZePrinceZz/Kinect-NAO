@@ -10,6 +10,9 @@ import kinecthandler
 import joints
 import numpy as np
 import utils
+import motion
+import csv
+
 
 
 def get_robot_world(kinect_pos):
@@ -389,30 +392,75 @@ def get_head(kinect_pos):
     return pitch
 
 
-def get_head_YAW(kinect_pos, kinect_rot, world=None, must_filter=True):
+def get_head_PITCH(kinect_pos, world=None, must_filter=True):
     if world is None:
         world = get_robot_world(kinect_pos)
     head = kinect_pos[kinecthandler.joints_map[joints.HEAD]]
-    print "Head Pos: ", head
+    #print "Head Pos: ", head
     neck = kinect_pos[kinecthandler.joints_map[joints.NECK]]
     modified_neck = [neck[0], neck[1] - 1, neck[2]]
     neck_head = utils.get_vector(head, neck, transform=world[0])
     modified_neck_head = utils.get_vector(head, modified_neck, transform=world[0])
     res = np.arccos(utils.normalized_dot(neck_head, modified_neck_head))
+    #print "Head Pos x: ", head[0], "\n"
+    #print "Head Pos y: ", head[1], "\n"
+    #print "Head Pos z: ", head[2], "\n\n"
     sign = 1
-    if head[2] > neck[2]:
+    if head[1] > neck[2]:
         sign = -1
     res *= sign
-    res = max(res, -0.66)
-    res = min(res, 0.5)
-    if must_filter:
-        res = utils.value_filter("h_yaw", res)
-    head_yaw = -kinect_rot[kinecthandler.joints_map[joints.HEAD]][2]
-    print "Head rot: ", head_yaw
-    head_yaw = min(res, 100)
-    head_yaw = max(res, -100)
-    print "Head yaw: ", head_yaw
-    return head_yaw
+    res = res*180./np.pi
+    #res = max(res, -0.66)
+    #res = min(res, 0.5)
+    #if must_filter:
+    #    res = utils.value_filter("h_pitch", res)
+    rad = res*motion.TO_RAD
+    print "Head Pitch: ", rad, "\n\n"
+
+    #with open("HeadPitch.csv", 'wb') as HP:
+    #    HPwriter = csv.writer(HP, delimiter=' ', quotechar='"', quoting=csv.QUOTE_ALL)
+    #    HPwriter.writerow(rad)
+    return res
+    #if head[2] > neck[2]:
+    #    sign = -1
+    #res *= sign
+    #res = max(res, -0.66)
+    #res = min(res, 0.5)
+    #if must_filter:
+    #    res = utils.value_filter("h_yaw", res)
+    #head_yaw = -kinect_rot[kinecthandler.joints_map[joints.HEAD]][2]
+    #print "Head rot: ", kinect_rot[kinecthandler.joints_map[joints.HEAD]]
+    #head_yaw = min(res, 100)
+    #head_yaw = max(res, -100)
+    #print "Head yaw: ", head_yaw
+    #return head_pitch
+
+
+def get_head_YAW(kinect_pos, world=None, must_filter=True):
+    if world is None:
+        world = get_robot_world(kinect_pos)
+    head = kinect_pos[kinecthandler.joints_map[joints.HEAD]]
+    #print "Head Pos: ", head
+    neck = kinect_pos[kinecthandler.joints_map[joints.NECK]]
+    modified_neck = [neck[0], neck[1] - 1, neck[2]]
+    neck_head = utils.get_vector(head, neck, transform=world[0])
+    modified_neck_head = utils.get_vector(head, modified_neck, transform=world[0])
+    res = np.arctan(utils.normalized_dot(neck_head, modified_neck_head))
+    sign = 1
+    if head[1] > neck[2]:
+        sign = -1
+    res *= sign
+    res = res*180./np.pi
+    #res = max(res, -0.66)
+    #res = min(res, 0.5)
+    #if must_filter:
+    #    res = utils.value_filter("h_pitch", res)
+    rad = res*motion.TO_RAD 
+    print "Head Yaw: ", rad, "\n\n"
+    #with open("HeadYaw.csv", 'wb') as HY:
+    #    HYwriter = csv.writer(HY, delimiter=' ', quotechar='"', quoting=csv.QUOTE_ALL)
+    #    HYwriter.writerow(rad)
+    return res
     
 
 def get_head2(kinect_pos):
