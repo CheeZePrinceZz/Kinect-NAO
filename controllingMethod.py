@@ -32,7 +32,6 @@ class controllingMethod():
                 [r_s_roll, r_s_pitch, r_e_roll, r_e_yaw, r_w_yaw] = converter.get_right_arm(res[i][0], res[i][1])
                 [l_s_roll, l_s_pitch, l_e_roll, l_e_yaw, l_w_yaw] = converter.get_left_arm(res[i][0], res[i][1])
                 h_pitch = converter.get_head_PITCH(res[i][0])
-                #h_yaw = converter.get_head2(res[i][0])
                 h_yaw = converter.get_head_YAW(res[i][0])
                 [r_hand, l_hand] = converter.get_hands(res[i][2])
                 nao_c.move_robot(right_shoulder_roll=r_s_roll, right_shoulder_pitch=r_s_pitch,

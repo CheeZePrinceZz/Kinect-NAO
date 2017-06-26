@@ -355,10 +355,6 @@ def get_head_pitch(kinect_pos, world=None, must_filter=True):
 #    return res
 ############################################################
 
-
-
-
-
 def get_head_yaw(kinect_pos, world=None, must_filter=True):
     if world is None:
         world = get_robot_world(kinect_pos)
@@ -379,13 +375,6 @@ def get_head_yaw(kinect_pos, world=None, must_filter=True):
     return res
 
 
-def get_hand_state(hand_value):
-    if hand_value == 0 or hand_value == 1 or hand_value == 3:
-        return 0.00
-    else:
-        return 0.99
-
-
 def get_head(kinect_pos):
     world = get_robot_world(kinect_pos)
     pitch = get_head_pitch(kinect_pos, world)*180./np.pi
@@ -394,18 +383,15 @@ def get_head(kinect_pos):
 
 
 def get_head_PITCH(kinect_pos, world=None, must_filter=True):
+    ##### radian: -0.6720 to 0.5149 Degree: -38.5 to 29.5#
     if world is None:
         world = get_robot_world(kinect_pos)
     head = kinect_pos[kinecthandler.joints_map[joints.HEAD]]
-    #print "Head Pos: ", head
     neck = kinect_pos[kinecthandler.joints_map[joints.NECK]]
     modified_neck = [neck[0], neck[1] - 1, neck[2]]
     neck_head = utils.get_vector(head, neck, transform=world[0])
     modified_neck_head = utils.get_vector(head, modified_neck, transform=world[0])
     res = np.arccos(utils.normalized_dot(neck_head, modified_neck_head))
-    #print "Head Pos x: ", head[0], "\n"
-    #print "Head Pos y: ", head[1], "\n"
-    #print "Head Pos z: ", head[2], "\n\n"
     sign = -1
     if head[1] > neck[2]:
         sign = 1
@@ -420,11 +406,6 @@ def get_head_PITCH(kinect_pos, world=None, must_filter=True):
         res = res*motion.TO_RAD+0.3
     else:
         res = res*motion.TO_RAD-0.3
-    #print "Head Pitch: ", rad, "\n\n"
-
-    #with open("HeadPitch.csv", 'wb') as HP:
-    #    HPwriter = csv.writer(HP, delimiter=' ', quotechar='"', quoting=csv.QUOTE_ALL)
-    #    HPwriter.writerow(rad)
     return res
     #if head[2] > neck[2]:
     #    sign = -1
@@ -442,6 +423,7 @@ def get_head_PITCH(kinect_pos, world=None, must_filter=True):
 
 
 def get_head_YAW(kinect_pos, world=None, must_filter=True):
+    ####### radian: -2.0857 to 2.0857 Degree: -119.5 to 119.5
     if world is None:
         world = get_robot_world(kinect_pos)
     head = kinect_pos[kinecthandler.joints_map[joints.HEAD]]
@@ -460,18 +442,23 @@ def get_head_YAW(kinect_pos, world=None, must_filter=True):
     #res = min(res, 0.5)
     #if must_filter:
     #    res = utils.value_filter("h_pitch", res)
-    rad = res*motion.TO_RAD 
-    #print "Head Yaw: ", rad, "\n\n"
-    #with open("HeadYaw.csv", 'wb') as HY:
-    #    HYwriter = csv.writer(HY, delimiter=' ', quotechar='"', quoting=csv.QUOTE_ALL)
-    #    HYwriter.writerow(rad)
+    res = res*motion.TO_RAD
     return res
-    
+
 
 def get_head2(kinect_pos):
     world = get_robot_world(kinect_pos)
     yaw = get_head_yaw(kinect_pos, world)*180./np.pi
     return yaw
+
+
+
+def get_hand_state(hand_value):
+    if hand_value == 0 or hand_value == 1 or hand_value == 3:
+        return 0.00
+    else:
+        return 0.99
+
 
 def get_hands(hands):
     #right_hand = get_hand_state(hands[0])
