@@ -81,7 +81,7 @@ class NAOCommander():
             #              "LShoulderPitch", "LShoulderRoll", "LElbowYaw", "LElbowRoll", "LWristYaw", "LHand",
             #              "HeadPitch","HeadYaw"]
             jointnames = ["RShoulderPitch", "RShoulderRoll", "RElbowYaw", "RElbowRoll", "RWristYaw", "RHand",
-                          "LShoulderPitch", "LShoulderRoll", "LElbowYaw", "LElbowRoll", "LWristYaw", "LHand","HeadPitch","HeadYaw"]
+                          "LShoulderPitch", "LShoulderRoll", "LElbowYaw", "LElbowRoll", "LWristYaw", "LHand","HeadPitch"]
             movement = [right_shoulder_pitch, right_shoulder_roll, right_elbow_yaw, right_elbow_roll, right_wrist_yaw]
             movement = [x * motion.TO_RAD for x in movement]
             # The hand is not in degree, we need to add it after the conversion
@@ -91,9 +91,9 @@ class NAOCommander():
             l_arm.append(left_hand)
             movement.extend(l_arm)
             movement.append(head_pitch)
-            movement.append(head_yaw)
-            print "Head Pitch: ",head_pitch, "\n"
-            print "Head Yaw: ",head_yaw, "\n"
+            #movement.append(head_yaw)
+            #print "Head Pitch: ",head_pitch, "\n"
+            #print "Head Yaw: ",head_yaw, "\n"
             #movement.append(head_yaw * motion.TO_RAD)
 
             #self.device.angleInterpolationWithSpeed(jointnames, movement, pfractionmaxspeed)  ### UNUSED

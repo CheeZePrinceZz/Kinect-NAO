@@ -1,5 +1,5 @@
 ###### TODO LIST ######
-# - Find Head Pitch and Yaw
+# - Find Head Yaw using y axis ?
 # ###########
 
 
@@ -427,7 +427,7 @@ def get_head_YAW(kinect_pos, world=None, must_filter=True):
     if world is None:
         world = get_robot_world(kinect_pos)
     head = kinect_pos[kinecthandler.joints_map[joints.HEAD]]
-    #print "Head Pos: ", head
+    print "Head Pos: ", head
     neck = kinect_pos[kinecthandler.joints_map[joints.NECK]]
     modified_neck = [neck[0], neck[1] - 1, neck[2]]
     neck_head = utils.get_vector(head, neck, transform=world[0])
@@ -438,6 +438,7 @@ def get_head_YAW(kinect_pos, world=None, must_filter=True):
         sign = -1
     res *= sign
     res = res*180./np.pi
+    #res = res*360./np.pi
     #res = max(res, -0.66)
     #res = min(res, 0.5)
     #if must_filter:
