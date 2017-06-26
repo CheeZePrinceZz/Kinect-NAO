@@ -1,9 +1,18 @@
 import motion
+import threading
 from naoqi import ALProxy
+
+global robotIP
+robotIP = "169.254.168.203"
+global PORT
+PORT = 9559
+global motionproxy
+motionproxy = ALProxy("ALMotion", robotIP, PORT)
 
 
 class NAOCommander():
     def __init__(self, robotIP, PORT):
+        global motionproxy
         motionproxy = ALProxy("ALMotion", robotIP, PORT)
         postureproxy = ALProxy("ALRobotPosture", robotIP, PORT)
         # Wake up robot
@@ -68,9 +77,11 @@ class NAOCommander():
             self.device.wbEnable(True)
             self.device.wbFootState("Fixed", "Legs")
             self.device.wbEnableBalanceConstraint(True, "Legs")
+            #jointnames = ["RShoulderPitch", "RShoulderRoll", "RElbowYaw", "RElbowRoll", "RWristYaw", "RHand",
+            #              "LShoulderPitch", "LShoulderRoll", "LElbowYaw", "LElbowRoll", "LWristYaw", "LHand",
+            #              "HeadPitch","HeadYaw"]
             jointnames = ["RShoulderPitch", "RShoulderRoll", "RElbowYaw", "RElbowRoll", "RWristYaw", "RHand",
-                          "LShoulderPitch", "LShoulderRoll", "LElbowYaw", "LElbowRoll", "LWristYaw", "LHand",
-                          "HeadPitch","HeadYaw"]
+                          "LShoulderPitch", "LShoulderRoll", "LElbowYaw", "LElbowRoll", "LWristYaw", "LHand","HeadPitch"]
             movement = [right_shoulder_pitch, right_shoulder_roll, right_elbow_yaw, right_elbow_roll, right_wrist_yaw]
             movement = [x * motion.TO_RAD for x in movement]
             # The hand is not in degree, we need to add it after the conversion
@@ -79,16 +90,48 @@ class NAOCommander():
             l_arm = [x * motion.TO_RAD for x in l_arm]
             l_arm.append(left_hand)
             movement.extend(l_arm)
-            movement.append(head_pitch * motion.TO_RAD)
-            movement.append(head_yaw * motion.TO_RAD)
-            #self.device.angleInterpolationWithSpeed(jointnames, movement, pfractionmaxspeed)
-            self.device.setAngles(jointnames, movement, pfractionmaxspeed)
-            name = ["HeadYaw", "HeadPitch"]
-            angleLists = [head_yaw * motion.TO_RAD ,head_pitch * motion.TO_RAD]
-            time = 0.6
-            isAbsolute = True
-            self.motionproxy.angleInterpolation(names, angleLists, time, isAbsolute)
+            #movement.append(head_pitch * motion.TO_RAD)
+            movement.append(head_pitch)
+            print "Head Pitch: ",head_pitch, "\n"
+            #movement.append(head_yaw * motion.TO_RAD)
 
+            #self.device.angleInterpolationWithSpeed(jointnames, movement, pfractionmaxspeed)  ### UNUSED
+            
+            ###################################################################
+            self.device.setAngles(jointnames, movement, pfractionmaxspeed)
+            #name = ["HeadYaw", "HeadPitch"]
+            #time = 0.6
+            #isAbsolute = True
+            #self.motionproxy.angleInterpolation(names, angleLists, time, isAbsolute)
+
+            #angleLists = [head_yaw * motion.TO_RAD ,head_pitch * motion.TO_RAD]
+            angleLists = [head_pitch * motion.TO_RAD]
+            #self.threadingMovement(jointnames, movement, angleLists)
+            ####################################################################
+
+
+    def bodyMovement(self, jointnames, movement):
+        pfractionmaxspeed = 0.6
+        self.device.setAngles(jointnames, movement, pfractionmaxspeed)
+
+
+    def headMovement(self, angleLists):
+        #names = ["HeadYaw", "HeadPitch"]
+        names = "HeadPitch"
+        time = 0.4
+        isAbsolute = True
+        motionproxy.angleInterpolation(names, angleLists, time, isAbsolute)
+
+
+    def threadingMovement(self, jointnames, movement, angleLists):
+        process1 = threading.Thread(target = self.bodyMovement(jointnames, movement))
+        process1.daemon = True
+        process2 = threading.Thread(target = self.headMovement(angleLists))
+        process2.daemon = True
+        process1.start()
+        process2.start()
+
+       
     def user_right_arm_articular(self, shoulder_pitch=80.5, shoulder_roll=-6.5, elbow_yaw=80,
                                  elbow_roll=2.5, wrist_yaw=0., hand=0.00, pfractionmaxspeed=0.6):
         if not self.device.moveIsActive():

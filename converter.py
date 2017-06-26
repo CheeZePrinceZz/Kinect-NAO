@@ -389,6 +389,7 @@ def get_hand_state(hand_value):
 def get_head(kinect_pos):
     world = get_robot_world(kinect_pos)
     pitch = get_head_pitch(kinect_pos, world)*180./np.pi
+    print pitch
     return pitch
 
 
@@ -405,17 +406,21 @@ def get_head_PITCH(kinect_pos, world=None, must_filter=True):
     #print "Head Pos x: ", head[0], "\n"
     #print "Head Pos y: ", head[1], "\n"
     #print "Head Pos z: ", head[2], "\n\n"
-    sign = 1
+    sign = -1
     if head[1] > neck[2]:
-        sign = -1
+        sign = 1
     res *= sign
-    res = res*180./np.pi
+    #res = res*180./np.pi
+    res = res*285./np.pi
     #res = max(res, -0.66)
     #res = min(res, 0.5)
     #if must_filter:
     #    res = utils.value_filter("h_pitch", res)
-    rad = res*motion.TO_RAD
-    print "Head Pitch: ", rad, "\n\n"
+    if sign == -1:
+        res = res*motion.TO_RAD+0.3
+    else:
+        res = res*motion.TO_RAD-0.3
+    #print "Head Pitch: ", rad, "\n\n"
 
     #with open("HeadPitch.csv", 'wb') as HP:
     #    HPwriter = csv.writer(HP, delimiter=' ', quotechar='"', quoting=csv.QUOTE_ALL)
@@ -456,7 +461,7 @@ def get_head_YAW(kinect_pos, world=None, must_filter=True):
     #if must_filter:
     #    res = utils.value_filter("h_pitch", res)
     rad = res*motion.TO_RAD 
-    print "Head Yaw: ", rad, "\n\n"
+    #print "Head Yaw: ", rad, "\n\n"
     #with open("HeadYaw.csv", 'wb') as HY:
     #    HYwriter = csv.writer(HY, delimiter=' ', quotechar='"', quoting=csv.QUOTE_ALL)
     #    HYwriter.writerow(rad)
