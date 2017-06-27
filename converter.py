@@ -427,7 +427,6 @@ def get_head_YAW(kinect_pos, world=None, must_filter=True):
     if world is None:
         world = get_robot_world(kinect_pos)
     head = kinect_pos[kinecthandler.joints_map[joints.HEAD]]
-    print "Head Pos: ", head
     neck = kinect_pos[kinecthandler.joints_map[joints.NECK]]
     modified_neck = [neck[0], neck[1] - 1, neck[2]]
     neck_head = utils.get_vector(head, neck, transform=world[0])
@@ -443,7 +442,9 @@ def get_head_YAW(kinect_pos, world=None, must_filter=True):
     #res = min(res, 0.5)
     #if must_filter:
     #    res = utils.value_filter("h_pitch", res)
-    res = res*motion.TO_RAD
+    print "Head X: ", head[0],"\n"
+    res = head[0]
+    #res = res*motion.TO_RAD
     return res
 
 

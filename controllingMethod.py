@@ -41,7 +41,7 @@ class controllingMethod():
                                 left_elbow_roll=l_e_roll, left_elbow_yaw=l_e_yaw,
                                 left_wrist_yaw=l_w_yaw,
                                 head_pitch=h_pitch, head_yaw=h_yaw, right_hand=r_hand, left_hand=l_hand,
-                                pfractionmaxspeed=0.4)
+                                pfractionmaxspeed=0.3)
 
 #def main():
 #    print "In main"
