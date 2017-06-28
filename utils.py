@@ -85,7 +85,8 @@ def smooth_right_hand(hand_value):
     threshold = 10
     global  right_hand
     if right_hand is None:
-        if hand_value == 0 or hand_value == 1 or hand_value == 3:
+        if hand_value == 1 or hand_value == 3:
+            #hand_value == 0 or
             right_hand = (0.00, threshold)
         else:
             right_hand = (0.99, threshold)
@@ -111,7 +112,8 @@ def smooth_left_hand(hand_value):
     threshold = 10
     global left_hand
     if left_hand is None:
-        if hand_value == 0 or hand_value == 1 or hand_value == 3:
+        if hand_value == 1 or hand_value == 3:
+            #hand_value == 0 or
             left_hand = (0.00, threshold)
         else:
             left_hand = (0.99, threshold)

@@ -398,28 +398,11 @@ def get_head_PITCH(kinect_pos, world=None, must_filter=True):
     res *= sign
     #res = res*180./np.pi
     res = res*285./np.pi
-    #res = max(res, -0.66)
-    #res = min(res, 0.5)
-    #if must_filter:
-    #    res = utils.value_filter("h_pitch", res)
     if sign == -1:
         res = res*motion.TO_RAD+0.3
     else:
         res = res*motion.TO_RAD-0.3
     return res
-    #if head[2] > neck[2]:
-    #    sign = -1
-    #res *= sign
-    #res = max(res, -0.66)
-    #res = min(res, 0.5)
-    #if must_filter:
-    #    res = utils.value_filter("h_yaw", res)
-    #head_yaw = -kinect_rot[kinecthandler.joints_map[joints.HEAD]][2]
-    #print "Head rot: ", kinect_rot[kinecthandler.joints_map[joints.HEAD]]
-    #head_yaw = min(res, 100)
-    #head_yaw = max(res, -100)
-    #print "Head yaw: ", head_yaw
-    #return head_pitch
 
 
 def get_head_YAW(kinect_pos, world=None, must_filter=True):
@@ -427,22 +410,17 @@ def get_head_YAW(kinect_pos, world=None, must_filter=True):
     if world is None:
         world = get_robot_world(kinect_pos)
     head = kinect_pos[kinecthandler.joints_map[joints.HEAD]]
-    neck = kinect_pos[kinecthandler.joints_map[joints.NECK]]
-    modified_neck = [neck[0], neck[1] - 1, neck[2]]
-    neck_head = utils.get_vector(head, neck, transform=world[0])
-    modified_neck_head = utils.get_vector(head, modified_neck, transform=world[0])
-    res = np.arctan(utils.normalized_dot(neck_head, modified_neck_head))
-    sign = 1
-    if head[1] > neck[2]:
-        sign = -1
-    res *= sign
-    res = res*180./np.pi
-    #res = res*360./np.pi
-    #res = max(res, -0.66)
-    #res = min(res, 0.5)
-    #if must_filter:
-    #    res = utils.value_filter("h_pitch", res)
-    print "Head X: ", head[0],"\n"
+    # neck = kinect_pos[kinecthandler.joints_map[joints.NECK]]
+    # modified_neck = [neck[0], neck[1] - 1, neck[2]]
+    # neck_head = utils.get_vector(head, neck, transform=world[0])
+    # modified_neck_head = utils.get_vector(head, modified_neck, transform=world[0])
+    # res = np.arctan(utils.normalized_dot(neck_head, modified_neck_head))
+    # sign = 1
+    # if head[1] > neck[2]:
+    #     sign = -1
+    # res *= sign
+    # res = res*180./np.pi
+    # print "Head X: ", head[0],"\n"
     res = head[0]
     #res = res*motion.TO_RAD
     return res
@@ -454,9 +432,9 @@ def get_head2(kinect_pos):
     return yaw
 
 
-
 def get_hand_state(hand_value):
-    if hand_value == 0 or hand_value == 1 or hand_value == 3:
+    if hand_value == 1 or hand_value == 3:
+        #hand_value == 0 or
         return 0.00
     else:
         return 0.99
