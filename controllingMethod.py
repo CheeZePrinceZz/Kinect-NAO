@@ -1,6 +1,10 @@
 import kinecthandler as kinecthandler
 import naocommander as naocommander
 import converter as converter
+from naoqi import ALProxy
+from naoqi import ALModule
+
+
 #import SkeletonDisplay as SkeletonDisplay
 #import threading
 
@@ -12,6 +16,7 @@ PORT = 9559
 # PORT = 8352
 nb_of_body = 1
 
+Content = "Hello, there. I'm NAO. I'm a interactive robot. Today, I'm really happy to see you today. I want you to be my human friend as I only have robot friends right now. Hahahaha"
 
 
 class controllingMethod():
@@ -41,7 +46,18 @@ class controllingMethod():
                                 left_elbow_roll=l_e_roll, left_elbow_yaw=l_e_yaw,
                                 left_wrist_yaw=l_w_yaw,
                                 head_pitch=h_pitch, head_yaw=h_yaw, right_hand=r_hand, left_hand=l_hand,
-                                pfractionmaxspeed=0.3)
+                                pfractionmaxspeed=0.4)
+
+    def speaking(self):
+        global tts
+        try:
+            tts = ALProxy("ALTextToSpeech", robotIP, PORT)
+        except Exception,e:
+            print "Could not create proxy to ALTextToSpeech"
+            print "Error was: ",e
+            sys.exit(1)
+        tts.setParameter("pitchShift", 1.0)
+        tts.say(Content)
 
 #def main():
 #    print "In main"
