@@ -79,7 +79,7 @@ facePositionZ = 0
 ######################################################## CONTENT ZONE ############################################################
 ##################################################################################################################################
 ##################################################################################################################################
-Content1 = """Hi am NAO. Today I want to start by asking you to pay attention to what posture you are doing right now. I hope that if you learn to tweak this a little bit, it could significantly change the way your life unfolds. 
+Content1 = """Hi am NAO. Today I want to start by asking you to pay attention to what posture you are doing right now. I hope that if you learn to tweak this a little bit, it could significantly change the way your life unfolds.
 So, we are really fascinated with body language, and we are particularly interested in other peoples body language.
 You know, we are interested in an awkward interaction, or a smile, or a contemptuous glance, or maybe a very awkward wink,
 or maybe even something like a handshake. So obviously when we think about nonverbal behavior, or body language.
@@ -91,7 +91,7 @@ For example, Nalini Ambady, a researcher at Tufts University, shows that when p
 their judgments of the physician's niceness predict whether or not that physician will be sued. 
 So it doesn't have to do so much with whether or not that physician was incompetent, but do we like that person and how they interacted. And this is the end for this session."""
 
-Content2 = """Okay, let’s continue. Another dramatic example is from the study of Alex Todorov which shows that judgments of political candidates' faces in just one second predict 70 percent of U.S. Senate 
+Content2 = """Okay, let’s continue. Another dramatic example is from the study of Alex Todorov which shows that judgments of political candidates' faces in just one second predict 70 percent of U.S. Senate
 and gubernatorial race outcomes. Well, when we think of nonverbals, we think of how we judge others, how they judge us and what the outcomes are. 
 We tend to forget, though, the other audience that's influenced by our nonverbals, and that's ourselves. We are also influenced by our nonverbals, our thoughts and our feelings and our physiology.
 Here, I’m talking about nonverbal expressions of power and dominance. And what are nonverbal expressions of power and dominance? Well, in the animal kingdom, they are about expanding.
@@ -102,9 +102,9 @@ She shows that people who are born with sight and people who are congenitally b
 So when they cross the finish line and they've won, it doesn't matter if they've never seen anyone do it. They do this. So the arms up in the V, the chin is slightly lifted.
 And this is the end for this session."""
 
-Content3 = """Let’s continue to our third part. What do we do when we feel powerless? We do exactly the opposite. We close up. We wrap ourselves up. We make ourselves small. 
+Content3 = """Let’s continue to our third part. What do we do when we feel powerless? We do exactly the opposite. We close up. We wrap ourselves up. We make ourselves small.
 We don't want to bump into the person next to us. So again, both animals and humans do the same thing. And this is what happens when you put together high and low power. 
-So what we tend to do when it comes to power is that we complement the other's nonverbals. So if someone is being really powerful with us, we tend to make ourselves smaller. 
+So what we tend to do when it comes to power is that we complement the other's nonverbals. So if someone is being really powerful with us, we tend to make ourselves smaller.
 We don't mirror them. We do the opposite of them. When noticing the behavior in the classroom, we can notice that the students really exhibit the full range of power nonverbals. 
 So you have people who are like caricatures of alphas, really coming into the room, they get right into the middle of the room before class even starts, like they really want to occupy space.
 When they sit down, they're sort of spread out. They raise their hands. You have other people who are virtually collapsing when they come in.
@@ -112,9 +112,9 @@ As soon they come in, they sit in their chair and they make themselves tiny. Wel
 So women are much more likely to do this kind of thing than men. Women feel chronically less powerful than men, so this is not surprising.
 And this is the end for this session."""
 
-Content4 = """Now let’s move on to the forth part. the other thing I noticed, other than gender, is that it also seemed to be related to the extent to which the students were participating, 
+Content4 = """Now let’s move on to the forth part. the other thing I noticed, other than gender, is that it also seemed to be related to the extent to which the students were participating,
 and how well they were participating. You get these equally qualified women and men coming in and then you get these differences in grades, and it seems to be partly attributable to participation.
-So we started to wonder, Is it possible that we could get people to fake it and would it lead them to participate more? In Dana Carney’s study, he really wanted to know, 
+So we started to wonder, Is it possible that we could get people to fake it and would it lead them to participate more? In Dana Carney’s study, he really wanted to know,
 can you fake it till you make it? Like, can you do this just for a little while and actually experience a behavioral outcome that makes you seem more powerful? 
 So we know that our nonverbals govern how other people think and feel about us. There's a lot of evidence. But our question really was, do our nonverbals govern how we think and feel about ourselves?
 There's some evidence that they do. For example, we smile when we feel happy, but also, when we're forced to smile by holding a pen in our teeth, it makes us feel happy.
@@ -126,7 +126,7 @@ Content5 = """Next. Now we know that our minds change our bodies, but is it als
 I'm talking about thoughts and feelings and the sort of physiological things that make up our thoughts and feelings, and in my case, that's hormones.
 So what do the minds of the powerful versus the powerless look like? So powerful people tend to be, not surprisingly, more assertive and more confident, more optimistic.
 They actually feel they're going to win even at games of chance. They also tend to be able to think more abstractly. So there are a lot of differences. They take more risks.
-There are a lot of differences between powerful and powerless people. Physiologically, there also are differences on two key hormones: 
+There are a lot of differences between powerful and powerless people. Physiologically, there also are differences on two key hormones:
 testosterone, which is the dominance hormone, and cortisol, which is the stress hormone. So what we find is that high-power alpha males in primate hierarchies have high testosterone
 and low cortisol, and powerful and effective leaders also have high testosterone and low cortisol. So what does that mean? When you think about power, 
 people tended to think only about testosterone, because that was about dominance. But really, power is also about how you react to stress. 
@@ -157,13 +157,13 @@ But what's driving it? It's not about the content of the speech. It's about th
 They bring their ideas as themselves, with no residue over them. So this is what's driving the effect, or mediating the effect.
 And this is the end for this session."""
 
-Content8 = """Well, let’s continue. The reason why Amy insists that our bodies change our minds and our minds can change our behavior, and our behavior can change our outcomes is according to her own experience. 
-That’s why she continues her study on this path. When she was a teenager, she was in a really bad car accident and got head injury which causes her brain trauma and changes her from a smart girl to low IQ person 
+Content8 = """Well, let’s continue. The reason why Amy insists that our bodies change our minds and our minds can change our behavior, and our behavior can change our outcomes is according to her own experience.
+That’s why she continues her study on this path. When she was a teenager, she was in a really bad car accident and got head injury which causes her brain trauma and changes her from a smart girl to low IQ person
 so she was taken out of college. Due to her injury condition, everyone said she’s not going to finish college. Since then she felt entirely powerless.
 But she still tried to struggle with this and continued her study and she ended up at Princeton by begging for her advisor to accept her.
 However, with the mindset that she is not supported to be here and she is an imposter. And the night before her first-year talk, a 20 minutes talk in front of 20 people.
 She was so afraid of being found out the next day that she called her advisor and said, I’m quitting. Then her advisor replied, “You are not quitting because I took a gamble on you.
-You’re going to stay, and this is what you’re going todo. You are going to fake it even if you’re terrified, until you have the moment where you say 
+You’re going to stay, and this is what you’re going todo. You are going to fake it even if you’re terrified, until you have the moment where you say
 Oh my gosh, I’m actually doing it and I have become this ! So that’s what Amy did, empowering herself. And you know what, at this moment, she is now a professor at Harvard.
 And this is the end for this session."""
 
@@ -174,7 +174,7 @@ Yes, you are supposed to be here! and tomorrow you’re going to fake it, you’
 And her student did so and everyone started to notice her in classroom. Months later, Amy realized that her student had not just faked it till she made it,
 she had actually faked it till she became it. So she had changed. From Amy’s and her student’s story, we all learn that don't fake it till you make it. Fake it till you become it.
 Do it enough until you actually become it and internalize. Tiny tweaks can lead to big changes. So, from now on before you go into the next stressful evaluative situation, for two minutes,
-try to empower yourself like doing high power postures, in the elevator, in a toilet, or at your desk. Configure your brain to cope the best in that situation. Get your testosterone up. 
+try to empower yourself like doing high power postures, in the elevator, in a toilet, or at your desk. Configure your brain to cope the best in that situation. Get your testosterone up.
 Get your cortisol down. Leave that situation feeling like, I really feel like I got to say who I am and show who I am. Just two minutes to empower yourself, 
 and it can significantly change the outcomes of your life. And this is the end of my talk. Thank you very much for your kind attention."""
 ##################################################################################################################################
@@ -263,6 +263,7 @@ and it can significantly change the outcomes of your life. And this is the end o
 ############################################
 def WordDetection():
     global motionProxy
+    time.sleep(100)
     detected = rh.audio.speechDetection(["sit", "sit down"], 50, "English")
     global asr
     asr = ALProxy("ALSpeechRecognition", IP, PORT)
@@ -273,30 +274,14 @@ def WordDetection():
             asr.unsubscribe("Test_ASR")
             rh.humanoid_motion.goToPosture('Crouch', 0.3)
             motionProxy.rest()
+            StopLecturing()
+            StopFaceTracking()
+            stopTracker()
     else:
         asr.subscribe("Test_ASR")
         asr.unsubscribe("Test_ASR")
 
-############################################
-#######    GazeBehaviour FUNCTION    #######
-############################################
-def GazeBehaviour():
-    global animatedSpeechProxy
-    global tts
-    global motionProxy
-    global motion
-    global SpeechRecognitionProxy
-    motionProxy.setBreathEnabled('Body', True)
-    try:
-        tts = ALProxy("ALTextToSpeech", IP, PORT)
-    except Exception,e:
-        print "Could not create proxy to ALTextToSpeech"
-        print "Error was: ",e
-        sys.exit(1)
-    animatedSpeechProxy = ALProxy("ALAnimatedSpeech", IP, PORT)
-    tts.setParameter("pitchShift", 1.0)
-    configuration = {"bodyLanguageMode":"contextual"}
-    animatedSpeechProxy.say(Content, configuration)
+
 ############################################
 
 ############################################
@@ -334,8 +319,8 @@ def GazeBehaviour():
             selectedDuration = random.randrange(5, 11, 2)
             # selectedDuration = numpy.random.choice([5, 7, 9, 11], 1, p=[0.4, 0.3, 0.2, 0.1])
         if isFaceCount > selectedDuration:
-            isFaceCount = 0
             GazeShifting()
+            isFaceCount = 0
 ############################################
 
 
@@ -362,15 +347,16 @@ def GazeShifting():
 ############################################
 
 ############################################
-###### HeadNoddingBehaviour FUNCTION #######
+###### HeadNoddingImitation FUNCTION #######
 ############################################
-def HeadNoddingBehaviour():
+def HeadNoddingImitation():
     global faceTrackingProxy
     global faceTrackingFlag
     global isFace
     global facePositionX
     global facePositionY
     global facePositionZ
+    global noddingTimer
     # global motionProxy
     try:
         faceTrackingProxy = ALProxy("ALFaceTracker", IP, PORT)
@@ -393,9 +379,10 @@ def HeadNoddingBehaviour():
             firstFlag = 0
         else:
             # print str(abs(facePositionY - previousFacePositionY))+"\n"
-            if abs(facePositionY - previousFacePositionY) > 0.05:
+            if abs(facePositionY - previousFacePositionY) > 0.08:
                 previousFacePositionY = facePositionY
                 HeadNodding()
+                noddingTimer = 0
         ################################
         # facePositionZ = round(facePosition[2],4)
         # print str(facePositionX) + " : " +str(facePositionY) + " : " + str(facePositionZ)
@@ -404,10 +391,26 @@ def HeadNoddingBehaviour():
 ############################################
 
 ############################################
+###### HeadNoddingInitiation FUNCTION #######
+############################################
+def HeadNoddingInitiation():
+    global noddingTimer
+    noddingTimer = 0
+    HselectedDuration = random.randrange(10, 20, 5)
+    while True:
+        time.sleep(1)
+        noddingTimer += 1
+        if noddingTimer > HselectedDuration:
+            HeadNodding()
+            noddingTimer = 0
+            HselectedDuration = random.randrange(10, 20, 5)
+############################################
+
+############################################
 ########## HEAD NODDING FUNCTION ###########
 ############################################
 def HeadNodding():
-    frequency = random.randint(1,4)
+    frequency = random.randint(1,8)
     print "Head Nodding: ",frequency
     name = "HeadPitch"
     isAbsolute = True
@@ -421,9 +424,21 @@ def HeadNodding():
     elif frequency == 3:
         angleLists = [-0.2, 0.2, -0.2, 0.2, 0.0]
         times      = [0.3, 0.6, 0.9, 1.2, 1.5]
-    else :
-        angleLists = [-0.2, 0.2, -0.2, 0.2, 0.0]
-        times      = [0.4, 0.8, 1.2, 1.6, 2.0]
+    elif frequency == 4:
+        angleLists = [-0.2, 0.2, 0.0]
+        times      = [0.3, 0.6, 0.9]
+    elif frequency == 5:
+        angleLists = [-0.1, 0.1, 0.0]
+        times      = [0.2, 0.4, 0.6]
+    elif frequency == 6:
+        angleLists = [-0.1, 0.1, 0.0]
+        times      = [0.3, 0.6, 0.9]
+    elif frequency == 7:
+        angleLists = [-0.2, 0.2, 0.0]
+        times      = [0.2, 0.4, 0.6]
+    elif frequency == 8:
+        angleLists = [-0.1, 0.1, -0.1, 0.1, 0.0]
+        times      = [0.3, 0.6, 0.9, 1.2, 1.5]
     motionProxy.angleInterpolation(name, angleLists, times, isAbsolute)
 ############################################
 
@@ -535,7 +550,7 @@ def LectureWithMovement():
 ############################################
 def SpeakingOnly():
     global tts
-    global motionProxy 
+    global motionProxy
     try:
         tts = ALProxy("ALTextToSpeech", IP, PORT)
     except Exception,e:
@@ -965,7 +980,7 @@ def main():
     # motionProxy.setStiffnesses('Body', 1.0)
 
     global Condition
-    Condition = input("Enter Condition Choice (1 for Only Speaking, 2 for Speaking+Gaze, 3 for Speaking+Head, 4 for Speaking+Gesture, 5 for Speaking+Gesture+Gaze, 6 for Speaking+Gesture+Head, 7 for Speaking+Gesture+Gaze+Head): ")
+    Condition = input("Enter Condition Choice (1 for Only Speaking, 2 for Speaking + FaceTracking, 3 for Speaking + NoddingImitation, 4 for Speaking + FaceTracking + NoddingImitation, 5 for Speaking + Gesture, 6 for Speaking + Gesture + FaceTracking+GazeShifting, 7 for Speaking + Gesture + NoddingImitation + NoddingInitiation, 8 for Speaking + Gesture + FaceTracking + GazeShifting + NoddingImitation + NoddingInitiation): ")
     global Content
     Content = input("Enter Content Choice: ")
     if Content == 1:
@@ -997,7 +1012,7 @@ def main():
     elif Condition == 2:
         process1 = threading.Thread(target = SpeakingOnly)
         process1.daemon = True
-        process2 = threading.Thread(target = GazeBehaviour)
+        process2 = threading.Thread(target = FaceTracking)
         process2.daemon = True
         process3 = threading.Thread(target = WordDetection)
         process3.daemon = True
@@ -1007,7 +1022,7 @@ def main():
     elif Condition == 3:
         process1 = threading.Thread(target = SpeakingOnly)
         process1.daemon = True
-        process2 = threading.Thread(target = HeadNoddingBehaviour)
+        process2 = threading.Thread(target = HeadNoddingImitation
         process2.daemon = True
         process3 = threading.Thread(target = WordDetection)
         process3.daemon = True
@@ -1016,28 +1031,31 @@ def main():
         process3.start()
     elif Condition == 4:
         autonomousProxy = ALProxy("ALAutonomousMoves", IP, PORT)
+        process1 = threading.Thread(target = SpeakingOnly)
+        process1.daemon = True
+        process2 = threading.Thread(target = FaceTracking)
+        process2.daemon = True
+        process3 = threading.Thread(target = HeadNoddingImitation)
+        process3.daemon = True
+        process4 = threading.Thread(target = WordDetection)
+        process4.daemon = True
+        process1.start()
+        process2.start()
+        process3.start()
+        process4.start()
+    elif Condition == 5:
+        autonomousProxy = ALProxy("ALAutonomousMoves", IP, PORT)
         process1 = threading.Thread(target = SpeakingWithGesture)
         process1.daemon = True
         process2 = threading.Thread(target = WordDetection)
         process2.daemon = True
         process1.start()
         process2.start()
-    elif Condition == 5:
-        autonomousProxy = ALProxy("ALAutonomousMoves", IP, PORT)
-        process1 = threading.Thread(target = SpeakingWithGesture)
-        process1.daemon = True
-        process2 = threading.Thread(target = GazeBehaviour)
-        process2.daemon = True
-        process3 = threading.Thread(target = WordDetection)
-        process3.daemon = True
-        process1.start()
-        process2.start()
-        process3.start()
     elif Condition == 6:
         autonomousProxy = ALProxy("ALAutonomousMoves", IP, PORT)
         process1 = threading.Thread(target = SpeakingWithGesture)
         process1.daemon = True
-        process2 = threading.Thread(target = HeadNoddingBehaviour)
+        process2 = threading.Thread(target = GazeBehaviour)
         process2.daemon = True
         process3 = threading.Thread(target = WordDetection)
         process3.daemon = True
@@ -1048,9 +1066,9 @@ def main():
         autonomousProxy = ALProxy("ALAutonomousMoves", IP, PORT)
         process1 = threading.Thread(target = SpeakingWithGesture)
         process1.daemon = True
-        process2 = threading.Thread(target = GazeBehaviour)
+        process2 = threading.Thread(target = HeadNoddingImitation)
         process2.daemon = True
-        process3 = threading.Thread(target = HeadNoddingBehaviour)
+        process3 = threading.Thread(target = HeadNoddingInitiation)
         process3.daemon = True
         process4 = threading.Thread(target = WordDetection)
         process4.daemon = True
@@ -1058,6 +1076,23 @@ def main():
         process2.start()
         process3.start()
         process4.start()
+    elif Condition == 8:
+        autonomousProxy = ALProxy("ALAutonomousMoves", IP, PORT)
+        process1 = threading.Thread(target = SpeakingWithGesture)
+        process1.daemon = True
+        process2 = threading.Thread(target = HeadNoddingImitation)
+        process2.daemon = True
+        process3 = threading.Thread(target = HeadNoddingInitiation)
+        process3.daemon = True
+        process4 = threading.Thread(target = GazeBehaviour)
+        process4.daemon = True
+        process5 = threading.Thread(target = WordDetection)
+        process5.daemon = True
+        process1.start()
+        process2.start()
+        process3.start()
+        process4.start()
+        process5.start()
     else:
         autonomousProxy = ALProxy("ALAutonomousMoves", IP, PORT)
         process1 = threading.Thread(target = SpeakingWithGesture)
