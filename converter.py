@@ -399,9 +399,9 @@ def get_head_PITCH(kinect_pos, world=None, must_filter=True):
     #res = res*180./np.pi
     res = res*285./np.pi
     if sign == -1:
-        res = res*motion.TO_RAD+0.1
+        res = res*motion.TO_RAD+0.2
     else:
-        res = res*motion.TO_RAD-0.2
+        res = res*motion.TO_RAD-0.3
     return res
 
 

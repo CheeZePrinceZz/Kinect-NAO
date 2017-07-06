@@ -2,19 +2,21 @@ import motion
 import threading
 from naoqi import ALProxy
 
-global robotIP
-robotIP = "169.254.168.203"
+global IP
+IP = "169.254.168.203"
+#IP = "192.168.11.32"
+
 global PORT
 PORT = 9559
 global motionproxy
-motionproxy = ALProxy("ALMotion", robotIP, PORT)
+motionproxy = ALProxy("ALMotion", IP, PORT)
 
 
 class NAOCommander():
-    def __init__(self, robotIP, PORT):
+    def __init__(self, IP, PORT):
         global motionproxy
-        motionproxy = ALProxy("ALMotion", robotIP, PORT)
-        postureproxy = ALProxy("ALRobotPosture", robotIP, PORT)
+        motionproxy = ALProxy("ALMotion", IP, PORT)
+        postureproxy = ALProxy("ALRobotPosture", IP, PORT)
         # Wake up robot
         motionproxy.wakeUp()
         postureproxy.goToPosture("Stand", 0.5)

@@ -13,6 +13,13 @@ from naoqi import ALProxy
 from naoqi import ALModule
 import sys
 import time
+import os
+import argparse
+from optparse import OptionParser
+from naoqi import ALBroker
+
+
+
 
 ##############################################################################
 #                       TEST & SKELETON DISPLAY ZONE                         #
@@ -40,7 +47,8 @@ import time
 ###############################################################################
 
 
-robotIP = "169.254.168.203"
+IP = "169.254.168.203"   #Wire
+#IP = "192.168.11.32"      #Wireless 
 PORT = 9559
 
 nb_of_body = 1
@@ -150,7 +158,30 @@ def main():
     global kinect_h
     global nao_c
     global flag
+    global process1
+    global process2
     flag = 0
+    parser = OptionParser()
+    parser.add_option("--pip",
+        help = "Parent broker port. The IP address or your robot",
+        dest = "pip")
+    parser.add_option("--pport",
+        help = "Parent broker port. The port NAOqi is listening to",
+        dest = "pport",
+        type = "int")
+    parser.set_defaults(
+        pip = IP,
+        pport = PORT)
+
+    (opts, args_) = parser.parse_args()
+    pip   = opts.pip
+    pport = opts.pport
+
+    myBroker = ALBroker("myBroker",
+       "0.0.0.0",   # listen to anyone
+       0,           # find a free port and use it
+       pip,         # parent broker IP
+       pport)       # parent broker port
     ContentChoice = input("Enter Content Part: ")
     if ContentChoice == 1:
         Content = Content1
@@ -171,7 +202,7 @@ def main():
     elif ContentChoice == 9:
         Content = Content9
     kinect_h = kinecthandler.KinectHandler()
-    nao_c = naocommander.NAOCommander(robotIP, PORT)
+    nao_c = naocommander.NAOCommander(IP, PORT)
 
     process1 = threading.Thread(target = MoveRobot)
     process1.daemon = True
@@ -180,6 +211,14 @@ def main():
     process1.start()
     process2.start()
     process2.join()
+    try:
+        while True:
+            time.sleep(3)
+    except KeyboardInterrupt:
+        print
+        print "Interrupted by user, shutting down"
+        myBroker.shutdown()
+        sys.exit()
 
 def MoveRobot():
     global flag
@@ -207,20 +246,24 @@ def MoveRobot():
 def Speaking():
     global tts
     try:
-        tts = ALProxy("ALTextToSpeech", robotIP, PORT)
+        tts = ALProxy("ALTextToSpeech", IP, PORT)
     except Exception,e:
         print "Could not create proxy to ALTextToSpeech"
         print "Error was: ",e
-        sys.exit(1)
+        sys.exit()
+        os._exit()
     tts.setParameter("pitchShift", 1.0)
     while flag != 1:
         time.sleep(1)
     time.sleep(3)
     tts.say(Content)
     time.sleep(3)
-    motionproxy = ALProxy("ALMotion", robotIP, PORT)
+    motionproxy = ALProxy("ALMotion", IP, PORT)
     motionproxy.rest()
+    sys.exit()
+    os._exit(0)
 
 
 if __name__ == "__main__":
     main()
+

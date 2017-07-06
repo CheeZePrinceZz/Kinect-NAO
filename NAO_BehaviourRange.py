@@ -24,6 +24,8 @@ rh = RappRobot()
 ########## CHANGE IP OF NAO HERE ###########
 # IP = "169.254.1.189"   #WIRE
 IP = "169.254.168.203"   #WIRE
+#IP = "192.168.11.32"      #Wireless 
+
 # IP = "169.254.246.118"     #WIRE
 # IP = "169.254.201.66"
 #IP = "169.254.128.114"      #WIRELESS
@@ -263,25 +265,21 @@ and it can significantly change the outcomes of your life. And this is the end o
 ############################################
 def WordDetection():
     global motionProxy
-    time.sleep(100)
-    detected = rh.audio.speechDetection(["sit", "sit down"], 50, "English")
-    global asr
-    asr = ALProxy("ALSpeechRecognition", IP, PORT)
-    if len(detected) > 1:
-        print "Word Detection Probability: ",detected['probability']
-        if detected['probability'] >= 0.5:
+    time.sleep(90)
+    while True:
+        detected = rh.audio.speechDetection(["sit", "rest", "stop"], 100, "English")
+        global asr
+        asr = ALProxy("ALSpeechRecognition", IP, PORT)
+        if len(detected) > 1:
+            print "Word Detection Probability: ",detected['probability']
+            if detected['probability'] >= 0.1:
+                asr.subscribe("Test_ASR")
+                asr.unsubscribe("Test_ASR")
+                rh.humanoid_motion.goToPosture('Crouch', 0.3)
+                motionProxy.rest()
+        else:
             asr.subscribe("Test_ASR")
             asr.unsubscribe("Test_ASR")
-            rh.humanoid_motion.goToPosture('Crouch', 0.3)
-            motionProxy.rest()
-            StopLecturing()
-            StopFaceTracking()
-            stopTracker()
-    else:
-        asr.subscribe("Test_ASR")
-        asr.unsubscribe("Test_ASR")
-
-
 ############################################
 
 ############################################
@@ -378,10 +376,11 @@ def HeadNoddingImitation():
             previousFacePositionY = facePositionY
             firstFlag = 0
         else:
-            # print str(abs(facePositionY - previousFacePositionY))+"\n"
-            if abs(facePositionY - previousFacePositionY) > 0.08:
+            print str(abs(facePositionY - previousFacePositionY))+"\n"
+            if abs(facePositionY - previousFacePositionY) > 0.03:
                 previousFacePositionY = facePositionY
                 HeadNodding()
+                print "Nodding Imitation"
                 noddingTimer = 0
         ################################
         # facePositionZ = round(facePosition[2],4)
@@ -402,6 +401,7 @@ def HeadNoddingInitiation():
         noddingTimer += 1
         if noddingTimer > HselectedDuration:
             HeadNodding()
+            print "Nodding Initiation"
             noddingTimer = 0
             HselectedDuration = random.randrange(10, 20, 5)
 ############################################
@@ -410,33 +410,26 @@ def HeadNoddingInitiation():
 ########## HEAD NODDING FUNCTION ###########
 ############################################
 def HeadNodding():
-    frequency = random.randint(1,8)
-    print "Head Nodding: ",frequency
+    frequency = random.randint(1,6)
     name = "HeadPitch"
     isAbsolute = True
     # StiffnessOn(motionProxy)
     if frequency == 1:
-        angleLists = [-0.2, 0.2, -0.2, 0.2,0.0]
-        times      = [0.2, 0.4, 0.6, 0.8, 1.0]
-    elif frequency == 2:
         angleLists = [-0.1, 0.1, -0.1, 0.1, 0.0]
         times      = [0.2, 0.4, 0.6, 0.8, 1.0]
-    elif frequency == 3:
+    elif frequency == 2:
         angleLists = [-0.2, 0.2, -0.2, 0.2, 0.0]
         times      = [0.3, 0.6, 0.9, 1.2, 1.5]
-    elif frequency == 4:
+    elif frequency == 3:
         angleLists = [-0.2, 0.2, 0.0]
         times      = [0.3, 0.6, 0.9]
+    elif frequency == 4:
+        angleLists = [-0.1, 0.1, 0.0]
+        times      = [0.2, 0.4, 0.6]
     elif frequency == 5:
         angleLists = [-0.1, 0.1, 0.0]
-        times      = [0.2, 0.4, 0.6]
-    elif frequency == 6:
-        angleLists = [-0.1, 0.1, 0.0]
         times      = [0.3, 0.6, 0.9]
-    elif frequency == 7:
-        angleLists = [-0.2, 0.2, 0.0]
-        times      = [0.2, 0.4, 0.6]
-    elif frequency == 8:
+    elif frequency == 6:
         angleLists = [-0.1, 0.1, -0.1, 0.1, 0.0]
         times      = [0.3, 0.6, 0.9, 1.2, 1.5]
     motionProxy.angleInterpolation(name, angleLists, times, isAbsolute)
@@ -464,6 +457,7 @@ def SpeakingWithGesture():
     tts.setParameter("pitchShift", 1.0)
     configuration = {"bodyLanguageMode":"contextual"}
     animatedSpeechProxy.say(Content, configuration)
+    StopFaceTracking()
 ############################################
 
 ############################################
@@ -560,6 +554,7 @@ def SpeakingOnly():
 
     tts.setParameter("pitchShift", 1.0)
     tts.say(Content)
+    StopFaceTracking()
 ############################################
 
 ############################################
@@ -851,13 +846,8 @@ def StopFaceDetection():
 ######## Stop Face Tracking FUNCTION #######
 ############################################
 def StopFaceTracking():
-    global faceProxy
-    global tracker
-    tracker = ALProxy("ALTracker", IP, PORT)
-    tracker.stopTracker()
-    tracker.unregisterAllTargets()
-    tracking_enabled = False
-    faceProxy.enableTracking(tracking_enabled)
+    global faceTrackingProxy
+    faceTrackingProxy.stopTracker()
 ############################################
 
 ############################################
@@ -1022,7 +1012,7 @@ def main():
     elif Condition == 3:
         process1 = threading.Thread(target = SpeakingOnly)
         process1.daemon = True
-        process2 = threading.Thread(target = HeadNoddingImitation
+        process2 = threading.Thread(target = HeadNoddingImitation)
         process2.daemon = True
         process3 = threading.Thread(target = WordDetection)
         process3.daemon = True
