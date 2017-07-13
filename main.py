@@ -25,25 +25,25 @@ from naoqi import ALBroker
 #                       TEST & SKELETON DISPLAY ZONE                         #
 ##############################################################################
 #import controllingMethod as controllingMethod
-#import SkeletonDisplay as SkeletonDisplay
-#import threading
-
-#if __name__ == '__main__':
+# import SkeletonDisplay as SkeletonDisplay
+# import threading
+# 
+# if __name__ == '__main__':
 #    SkeletonDisplay.BodyGameRuntime()
 #    _sensor = kinecthandler.KinectHandler()
 #    _avatar = naocommander.NAOCommander(robotIP, PORT)
 #    kinect_test(_sensor, _avatar)
-
-#process1 = threading.Thread(target = SkeletonDisplay.BodyGameRuntime())
-#process1.daemon = True
-#process2 = threading.Thread(target = controllingMethod.controllingMethod())
-#process2.daemon = True
-#process1.start()
-#process2.start()
-    # process3.start()
-    # _sensor = process2
-    # _avatar = process3
-    # kinect_test(_sensor, _avatar)
+# 
+# process1 = threading.Thread(target = SkeletonDisplay.BodyGameRuntime())
+# process1.daemon = True
+# #process2 = threading.Thread(target = controllingMethod.controllingMethod())
+# #process2.daemon = True
+# process1.start()
+# #process2.start()
+# #    process3.start()
+# #    _sensor = process2
+# #    _avatar = process3
+# #   kinect_test(_sensor, _avatar)
 ###############################################################################
 
 
@@ -60,10 +60,11 @@ or maybe even something like a handshake. So obviously when we think about nonve
 We think about communication. When we think about communication, we think about interactions.
 So what is your body language communicating to me? What's mine communicating to you?
 So social scientists have spent a lot of time looking at the effects of our body language, or other peoples body language, on judgments.
-And we make sweeping judgments and inferences from body language. And those judgments can predict really meaningful life outcomes like who we hire or promote, who we ask out on a date.
-For example, Nalini Ambady, a researcher at Tufts University, shows that when people watch 30 seconds soundless clips of real physician-patient interactions, 
-their judgments of the physician's niceness predict whether or not that physician will be sued. 
-So it doesn't have to do so much with whether or not that physician was incompetent, but do we like that person and how they interacted. And this is the end for this session."""
+And we make sweeping judgments and inferences from body language. And those judgments can predict really meaningful life outcomes like who we hire or promote, who we ask out on a date. And this is the end of this session."""
+
+#For example, Nalini Ambady, a researcher at Tufts University, shows that when people watch 30 seconds soundless clips of real physician-patient interactions, 
+#their judgments of the physician's niceness predict whether or not that physician will be sued. 
+#So it doesn't have to do so much with whether or not that physician was incompetent, but do we like that person and how they interacted. And this is the end for this session."""
 
 Content2 = """Okay, let’s continue. Another dramatic example is from the study of Alex Todorov which shows that judgments of political candidates' faces in just one second predict 70 percent of U.S. Senate 
 and gubernatorial race outcomes. Well, when we think of nonverbals, we think of how we judge others, how they judge us and what the outcomes are. 

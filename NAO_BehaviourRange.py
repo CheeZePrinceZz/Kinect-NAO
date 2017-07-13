@@ -88,10 +88,11 @@ or maybe even something like a handshake. So obviously when we think about nonve
 We think about communication. When we think about communication, we think about interactions.
 So what is your body language communicating to me? What's mine communicating to you?
 So social scientists have spent a lot of time looking at the effects of our body language, or other peoples body language, on judgments.
-And we make sweeping judgments and inferences from body language. And those judgments can predict really meaningful life outcomes like who we hire or promote, who we ask out on a date.
-For example, Nalini Ambady, a researcher at Tufts University, shows that when people watch 30 seconds soundless clips of real physician-patient interactions, 
-their judgments of the physician's niceness predict whether or not that physician will be sued. 
-So it doesn't have to do so much with whether or not that physician was incompetent, but do we like that person and how they interacted. And this is the end for this session."""
+And we make sweeping judgments and inferences from body language. And those judgments can predict really meaningful life outcomes like who we hire or promote, who we ask out on a date. And this is the end of this session."""
+
+#For example, Nalini Ambady, a researcher at Tufts University, shows that when people watch 30 seconds soundless clips of real physician-patient interactions, 
+#their judgments of the physician's niceness predict whether or not that physician will be sued. 
+#So it doesn't have to do so much with whether or not that physician was incompetent, but do we like that person and how they interacted. And this is the end for this session."""
 
 Content2 = """Okay, let’s continue. Another dramatic example is from the study of Alex Todorov which shows that judgments of political candidates' faces in just one second predict 70 percent of U.S. Senate
 and gubernatorial race outcomes. Well, when we think of nonverbals, we think of how we judge others, how they judge us and what the outcomes are. 
@@ -265,7 +266,7 @@ and it can significantly change the outcomes of your life. And this is the end o
 ############################################
 def WordDetection():
     global motionProxy
-    time.sleep(90)
+    time.sleep(30)
     while True:
         detected = rh.audio.speechDetection(["sit", "rest", "stop"], 100, "English")
         global asr
@@ -305,7 +306,9 @@ def GazeBehaviour():
     selectedDuration = 5
     durationChoices = [5, 7, 9, 11]
     # selectedDuration = numpy.random.choice([5, 7, 9, 11], 1, p=[0.4, 0.3, 0.2, 0.1])
-    selectedDuration = random.randrange(5, 11, 2)
+    ###### 30 fps #######
+    #selectedDuration = random.randrange(150, 330, 60)
+    selectedDuration = random.randrange(30, 90, 10)
     while faceTrackingFlag == 1:
         time.sleep(0.1)
         isFace = faceTrackingProxy.isNewData()
@@ -314,8 +317,11 @@ def GazeBehaviour():
         else:
             isFaceCount = 0
             durationChoices = [5, 7, 9, 11]
-            selectedDuration = random.randrange(5, 11, 2)
+            selectedDuration = random.randrange(30, 90, 10)
+            #selectedDuration = random.randrange(5, 11, 2)
             # selectedDuration = numpy.random.choice([5, 7, 9, 11], 1, p=[0.4, 0.3, 0.2, 0.1])
+            ###### 30 fps #######
+            #selectedDuration = random.randrange(150, 330, 60)
         if isFaceCount > selectedDuration:
             GazeShifting()
             isFaceCount = 0
@@ -336,10 +342,10 @@ def GazeShifting():
     isAbsolute = True
     # StiffnessOn(motionProxy)
     if frequency == 1:
-        angleLists = [angle+0.1, angle]
+        angleLists = [angle+0.05, angle]
         times      = [0.1, 1]
     elif frequency == 2:
-        angleLists = [angle-0.1, angle]
+        angleLists = [angle-0.05, angle]
         times      = [0.1, 1]
     motionProxy.angleInterpolation(name, angleLists, times, isAbsolute)
 ############################################
@@ -376,10 +382,11 @@ def HeadNoddingImitation():
             previousFacePositionY = facePositionY
             firstFlag = 0
         else:
-            print str(abs(facePositionY - previousFacePositionY))+"\n"
-            if abs(facePositionY - previousFacePositionY) > 0.03:
+            #print str(abs(facePositionY - previousFacePositionY))+"\n"
+            if abs(facePositionY - previousFacePositionY) > 0.04:
                 previousFacePositionY = facePositionY
                 HeadNodding()
+                time.sleep(1)
                 print "Nodding Imitation"
                 noddingTimer = 0
         ################################
@@ -395,15 +402,20 @@ def HeadNoddingImitation():
 def HeadNoddingInitiation():
     global noddingTimer
     noddingTimer = 0
-    HselectedDuration = random.randrange(10, 20, 5)
+    ###### 30 fps #######
+    #HselectedDuration = random.randrange(300, 600, 150)
+    HselectedDuration = random.randrange(6, 12, 2)
     while True:
         time.sleep(1)
         noddingTimer += 1
+        print "noddingTimer: ",noddingTimer
         if noddingTimer > HselectedDuration:
             HeadNodding()
             print "Nodding Initiation"
             noddingTimer = 0
-            HselectedDuration = random.randrange(10, 20, 5)
+            HselectedDuration = random.randrange(6, 12, 2)
+            ###### 30 fps #######
+            #HselectedDuration = random.randrange(300, 600, 150)
 ############################################
 
 ############################################
@@ -444,6 +456,7 @@ def SpeakingWithGesture():
     global motionProxy
     global motion
     global SpeechRecognitionProxy
+    global rh
     AutonomousMoves.setExpressiveListeningEnabled(True)
     AutonomousMoves.setBackgroundStrategy("backToNeutral")
     motionProxy.setBreathEnabled('Body', True)
@@ -458,6 +471,9 @@ def SpeakingWithGesture():
     configuration = {"bodyLanguageMode":"contextual"}
     animatedSpeechProxy.say(Content, configuration)
     StopFaceTracking()
+    time.sleep(3)
+    rh.humanoid_motion.goToPosture('Crouch', 0.3)
+    motionProxy.rest()
 ############################################
 
 ############################################
@@ -545,6 +561,7 @@ def LectureWithMovement():
 def SpeakingOnly():
     global tts
     global motionProxy
+    global rh
     try:
         tts = ALProxy("ALTextToSpeech", IP, PORT)
     except Exception,e:
@@ -555,6 +572,9 @@ def SpeakingOnly():
     tts.setParameter("pitchShift", 1.0)
     tts.say(Content)
     StopFaceTracking()
+    time.sleep(3)
+    rh.humanoid_motion.goToPosture('Crouch', 0.3)
+    motionProxy.rest()
 ############################################
 
 ############################################
@@ -970,7 +990,7 @@ def main():
     # motionProxy.setStiffnesses('Body', 1.0)
 
     global Condition
-    Condition = input("Enter Condition Choice (1 for Only Speaking, 2 for Speaking + FaceTracking, 3 for Speaking + NoddingImitation, 4 for Speaking + FaceTracking + NoddingImitation, 5 for Speaking + Gesture, 6 for Speaking + Gesture + FaceTracking+GazeShifting, 7 for Speaking + Gesture + NoddingImitation + NoddingInitiation, 8 for Speaking + Gesture + FaceTracking + GazeShifting + NoddingImitation + NoddingInitiation): ")
+    Condition = input("Enter Condition Choice \n 1 for Only Speaking \n 2 for Speaking + FaceTracking \n 3 for Speaking + NoddingImitation \n 4 for Speaking + FaceTracking + NoddingImitation \n 5 for Speaking + Gesture \n 6 for Speaking + Gesture + FaceTracking+GazeShifting \n 7 for Speaking + Gesture + NoddingImitation + NoddingInitiation \n 8 for Speaking + Gesture + FaceTracking + GazeShifting + NoddingImitation + NoddingInitiation: ")
     global Content
     Content = input("Enter Content Choice: ")
     if Content == 1:
@@ -995,30 +1015,30 @@ def main():
     if Condition == 1:
         process1 = threading.Thread(target = SpeakingOnly)
         process1.daemon = True
-        process2 = threading.Thread(target = WordDetection)
-        process2.daemon = True
+        #process2 = threading.Thread(target = WordDetection)
+        #process2.daemon = True
         process1.start()
-        process2.start()
+        #process2.start()
     elif Condition == 2:
         process1 = threading.Thread(target = SpeakingOnly)
         process1.daemon = True
         process2 = threading.Thread(target = FaceTracking)
         process2.daemon = True
-        process3 = threading.Thread(target = WordDetection)
-        process3.daemon = True
+        #process3 = threading.Thread(target = WordDetection)
+        #process3.daemon = True
         process1.start()
         process2.start()
-        process3.start()
+        #process3.start()
     elif Condition == 3:
         process1 = threading.Thread(target = SpeakingOnly)
         process1.daemon = True
         process2 = threading.Thread(target = HeadNoddingImitation)
         process2.daemon = True
-        process3 = threading.Thread(target = WordDetection)
-        process3.daemon = True
+        #process3 = threading.Thread(target = WordDetection)
+        #process3.daemon = True
         process1.start()
         process2.start()
-        process3.start()
+        #process3.start()
     elif Condition == 4:
         autonomousProxy = ALProxy("ALAutonomousMoves", IP, PORT)
         process1 = threading.Thread(target = SpeakingOnly)
@@ -1027,31 +1047,31 @@ def main():
         process2.daemon = True
         process3 = threading.Thread(target = HeadNoddingImitation)
         process3.daemon = True
-        process4 = threading.Thread(target = WordDetection)
-        process4.daemon = True
+        #process4 = threading.Thread(target = WordDetection)
+        #process4.daemon = True
         process1.start()
         process2.start()
         process3.start()
-        process4.start()
+        #process4.start()
     elif Condition == 5:
         autonomousProxy = ALProxy("ALAutonomousMoves", IP, PORT)
         process1 = threading.Thread(target = SpeakingWithGesture)
         process1.daemon = True
-        process2 = threading.Thread(target = WordDetection)
-        process2.daemon = True
+        #process2 = threading.Thread(target = WordDetection)
+        #process2.daemon = True
         process1.start()
-        process2.start()
+        #process2.start()
     elif Condition == 6:
         autonomousProxy = ALProxy("ALAutonomousMoves", IP, PORT)
         process1 = threading.Thread(target = SpeakingWithGesture)
         process1.daemon = True
         process2 = threading.Thread(target = GazeBehaviour)
         process2.daemon = True
-        process3 = threading.Thread(target = WordDetection)
-        process3.daemon = True
+        #process3 = threading.Thread(target = WordDetection)
+        #process3.daemon = True
         process1.start()
         process2.start()
-        process3.start()
+        #process3.start()
     elif Condition == 7:
         autonomousProxy = ALProxy("ALAutonomousMoves", IP, PORT)
         process1 = threading.Thread(target = SpeakingWithGesture)
@@ -1060,12 +1080,12 @@ def main():
         process2.daemon = True
         process3 = threading.Thread(target = HeadNoddingInitiation)
         process3.daemon = True
-        process4 = threading.Thread(target = WordDetection)
-        process4.daemon = True
+        #process4 = threading.Thread(target = WordDetection)
+        #process4.daemon = True
         process1.start()
         process2.start()
         process3.start()
-        process4.start()
+        #process4.start()
     elif Condition == 8:
         autonomousProxy = ALProxy("ALAutonomousMoves", IP, PORT)
         process1 = threading.Thread(target = SpeakingWithGesture)
@@ -1076,21 +1096,21 @@ def main():
         process3.daemon = True
         process4 = threading.Thread(target = GazeBehaviour)
         process4.daemon = True
-        process5 = threading.Thread(target = WordDetection)
-        process5.daemon = True
+        #process5 = threading.Thread(target = WordDetection)
+        #process5.daemon = True
         process1.start()
         process2.start()
         process3.start()
         process4.start()
-        process5.start()
+        #process5.start()
     else:
         autonomousProxy = ALProxy("ALAutonomousMoves", IP, PORT)
         process1 = threading.Thread(target = SpeakingWithGesture)
         process1.daemon = True
-        process2 = threading.Thread(target = WordDetection)
-        process2.daemon = True
+        #process2 = threading.Thread(target = WordDetection)
+        #process2.daemon = True
         process1.start()
-        process2.start()
+        #process2.start()
     try:
         while True:
             time.sleep(3)
